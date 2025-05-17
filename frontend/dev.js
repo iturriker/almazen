@@ -1,13 +1,15 @@
 const reset_db_button = document.getElementById("reset-db-button");
-
-    reset_db_button.addEventListener("click", async () => {
-        const confirm_reset = confirm("¿Estás seguro de que quieres resetear TODA la base de datos?");
-        if (!confirm_reset) return;
-        else {
-            const message = await resetDB();
-            alert(message);
-        }
-    });
+    
+reset_db_button.addEventListener("click", async (event) => {
+    event.preventDefault();
+    
+    const confirm_reset = confirm("¿Estás seguro de que quieres resetear TODA la base de datos?");
+    if (!confirm_reset) return;
+    else {
+        const message = await resetDB();
+        alert(message);
+    }
+});
 
 async function resetDB() {
     try {

@@ -10,6 +10,18 @@
     initial-value: rgb(226, 226, 226);
 }
 
+@property --grey-3 {
+    syntax: "<color>";
+    inherits: true;
+    initial-value: rgb(105, 105, 105);
+}
+
+@property --green-1 {
+    syntax: "<color>";
+    inherits: true;
+    initial-value: rgb(108, 179, 15);
+}
+
 @property --red-1 {
     syntax: "<color>";
     inherits: true;
@@ -91,6 +103,8 @@ button {
     border: none;
     outline: none;
     background-color: transparent;
+    width: fit-content;
+    text-align: left;
 }
 
 img {
@@ -113,7 +127,7 @@ main {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    /*align-items: center;*/
     padding: 100px 50px;
     min-height: 100dvh;
     gap: clamp(20px, 5dvh, 100px);

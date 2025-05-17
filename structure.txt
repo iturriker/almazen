@@ -1,34 +1,32 @@
 almazen/
     .env
+    .gitignore
     docker-compose.yml
-    structure.py
-    structure.txt
     backend/
         Dockerfile
         requirements.txt
         run.py
         app/
             __init__.py
-            routes/
-                files.py
-                providers.py
-                test.py
-                users.py
+            db/
+                schema.sql
                 __init__.py
-                __pycache__/
-                    files.cpython-313.pyc
-                    providers.cpython-313.pyc
-                    test.cpython-313.pyc
-                    users.cpython-313.pyc
-                    __init__.cpython-313.pyc
-            __pycache__/
-                __init__.cpython-313.pyc
+            routes/
+                dev.py
+                files.py
+                __init__.py
+            services/
+                fish.py
+                providers.py
+                __init__.py
     backup/
     frontend/
+        adder.js
         almazen.css
         almazen.html
         almazen_logo.png
-        file_table.js
-        test.js
-        viewer_table.js
+        dev.js
+        menu.css
+        viewer.js
     nginx/
+        nginx.conf

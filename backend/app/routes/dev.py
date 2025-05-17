@@ -10,7 +10,7 @@ def reset_database():
 
     try:
         with connection.cursor() as cursor:
-            tables = ['files', 'users']
+            tables = ['providers', 'files', 'fish']
 
             # Construir y ejecutar el comando TRUNCATE
             sql = f"TRUNCATE TABLE {', '.join(f'public.{t}' for t in tables)} RESTART IDENTITY CASCADE;"

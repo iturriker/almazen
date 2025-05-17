@@ -1,6 +1,50 @@
 .menu {
     display: flex;
-    width: 100%;
-    background-color: grey;
-    padding: 5px;
+    flex-direction: column;
+    width: fit-content;
+    padding: 10px;
+    gap: 5px;
+}
+
+.menu-text {
+    border-bottom: solid 2px var(--grey-2);
+}
+
+.menu-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.menu-checkbox {
+    appearance: none;
+    cursor: pointer;
+    width: 1rem;
+    height: 1rem;
+    border: 2px solid var(--grey-1);
+    border-radius: 4px;
+    background-color: white;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.menu-checkbox:hover {
+    border-color: var(--grey-3);
+    background-color: var(--grey-2);
+}
+
+.menu-checkbox:checked {
+    background-color: var(--green-1);
+    border-color: var(--green-1);
+}
+
+.menu-button {
+    border-bottom: solid 2px transparent;
+    transition: border-color 0.2s ease;
+}
+
+.menu-button:hover {
+    border-color: var(--grey-3);
+}
+
+.menu-button:active {
+    border-color: var(--green-1);
 }
