@@ -1,0 +1,277 @@
+@property --grey-1 {
+    syntax: "<color>";
+    inherits: true;
+    initial-value: rgba(180, 180, 180, 1);
+}
+
+@property --grey-2 {
+    syntax: "<color>";
+    inherits: true;
+    initial-value: rgb(226, 226, 226);
+}
+
+@property --red-1 {
+    syntax: "<color>";
+    inherits: true;
+    initial-value: rgb(218, 41, 28);
+}
+
+@property --red-2 {
+    syntax: "<color>";
+    inherits: true;
+    initial-value: rgba(218, 41, 28, 0.5);
+}
+
+@property --radius-1 {
+    syntax: "<length>";
+    inherits: true;
+    initial-value: 15px;
+}
+
+@property --layer-1 {
+    syntax: "<number>";
+    inherits: true;
+    initial-value: 1;
+}
+
+@keyframes dash {
+    0% {
+        stroke-dashoffset: 90;
+    }
+    100% {
+        stroke-dashoffset: -90;
+    }
+}
+
+/*GENÉRICOS*/
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+:root {
+    font-family: "Baloo Paaji 2", serif;
+    font-size: 1rem;
+    scrollbar-color: lightgrey white;
+    scroll-behavior: smooth;
+    scroll-padding-top: clamp(50px, 10dvh, 200px);
+}
+
+html, body, header, main, footer, section, article, table, input, button, h1, h2, h3, h4, li, i, p, a, pre, code {
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    width: 100%;
+}
+
+body *:not(input):not(button) {
+    cursor: default;
+}
+
+input {
+    font-family: inherit;
+    font-size: 1rem;
+    border: none;
+    outline: none;
+}
+
+textarea {
+    font-family: inherit;
+    font-size: 1rem;
+    resize: none;
+    border: none;
+    outline: none;
+}
+
+button {
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 1rem;
+    border: none;
+    outline: none;
+    background-color: transparent;
+}
+
+img {
+    max-width: 100%;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+span {
+    color: inherit;
+    font-size: inherit;
+}
+
+/*ESPECÍFICOS*/
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 100px 50px;
+    min-height: 100dvh;
+    gap: clamp(20px, 5dvh, 100px);
+}
+
+header {
+    position: fixed;
+    width: 100%;
+    padding: 10px 30px;
+    background-color: white;
+}
+
+footer {
+    position: fixed;
+    user-select: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    color: white;
+    background-color: var(--red-1);
+    padding: 20px;
+    bottom: 0;
+}
+
+table {
+    display: table;
+    text-align: left;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table tr {
+    border-bottom: 1px solid var(--grey-1);
+}
+
+table > tbody > tr:last-child {
+    border-bottom: none;
+}
+
+table th {
+    user-select: none;
+}
+
+table th,
+table td {
+    padding: 5px 10px;
+}
+
+.header-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.header-logo {
+    width: 120px;
+}
+
+.header-title {
+    user-select: none;
+    font-weight: 400;
+    text-transform: uppercase;
+}
+
+.header-title > span {
+    font-weight: 600;
+}
+
+.spinner {
+    /*display: none;*/
+    width: 25px;
+    min-width: 25px;
+}
+
+.spinner-circle {
+    fill: none;
+    stroke: var(--red-1);
+    stroke-width: 5;
+    stroke-dasharray: 90;
+    stroke-dashoffset: 0;
+    stroke-linecap: round;
+    animation: dash 1.5s ease-in-out infinite;
+    transform-origin: center;
+}
+
+.file-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.file-input {
+    display: none;
+}
+
+/*REUTILIZABLES*/
+.form-button {
+    user-select: none;
+    cursor: pointer;
+    white-space: nowrap;
+    padding: 10px 20px;
+    background-color: var(--red-2);
+    color: white;
+    border-radius: var(--radius-1);
+    transition: background 0.3s ease;
+}
+
+.form-button:hover {
+    background-color: var(--red-1);
+}
+
+/*NUEVOS*/
+.main-wrapper {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    gap: 40px;
+    padding: 10px;
+}
+
+.form-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.table-mask {
+    display: flex;
+    width: 100%;
+    max-height: 50dvh;
+    border-radius: var(--radius-1);
+    border-color: var(--grey-2);
+    box-shadow: 0 0 5px 0 var(--grey-2);
+    padding: 10px;
+    overflow: auto;
+}
+
+.table-message {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.table input {
+    color: var(--grey-1);
+}
+
+.table input.validated {
+    color: inherit;
+}
+
+.cell-wrapper {
+    display: flex;
+    text-wrap: nowrap;
+    align-items: center;
+    gap: 10px;
+}

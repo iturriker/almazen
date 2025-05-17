@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es_ES">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <title>Almazen</title>
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Baloo+Paaji+2:wght@400..800&display=swap" rel="stylesheet">
+
+        <link rel="stylesheet" href="almazen.css">
+        <link rel="stylesheet" href="menu.css">
+    </head>
+
+    <body>
+        <header>
+            <div class="header-wrapper">
+                <img class="header-logo" src="almazen_logo.png" alt="Almazen logo">
+                <h1 class="header-title">Alma<span>zen</span></h1>
+            </div>
+        </header>
+        <div class="ultra-wrap">
+            <main>
+                <div class="main-wrapper">
+                    <div class="form-wrapper">
+                        <form class="file-form">
+                            <label for="file-input" class="file-label form-button">Adjuntar</label>
+                            <input type="file" id="file-input" class="file-input" 
+                                accept=".pdf, .xls, .xlsx, .csv"
+                                multiple>
+                            <button type="submit" class="form-button">Enviar</button>
+                        </form>
+                    </div>
+                    <div class="table-mask">
+                        <p class="file-table-message table-message">Adjunta archivos de tipo .pdf .xlsx .csv</p>
+                        <table class="file-table table" style="display: none;">
+                            <thead>
+                                <tr>
+                                    <th>Archivo</th>
+                                    <th>Fecha</th>
+                                    <th>Proveedor</th>
+                                    <th>Estado</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="main-wrapper">
+                    <div class="table-mask">
+                        <div class="viewer-table-message table-message">Aplica los filtros para visualizar</div>
+                        <table class="viewer-table table">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        <div class="cell-wrapper">
+                                            <span>Archivo</span>
+                                            <input type="text" id="file-filter" placeholder="Filtrar por archivo">
+                                        </div>
+                                    </th>
+                                    <th>
+                                        <div class="cell-wrapper">
+                                            <span>Fecha</span>
+                                            <input type="date" id="date-filter" placeholder="Filtrar por fecha">
+                                        </div>
+                                    </th>
+                                    <th>
+                                        <div class="cell-wrapper">
+                                            <span>Proveedor</span>
+                                            <input type="text" id="provider-filter" placeholder="Filtrar por proveedor">
+                                        </div>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <nav class="menu">
+                    <p>Dev options</p>
+                    <button id="reset-db-button">Reset</button>
+                </nav>
+            </main>
+        </div>
+
+        <footer>
+            <p>© 2025 Almazen. MIT license.</p>
+        </footer>
+
+        <script src="adder.js" defer></script>
+        <script src="viewer.js" defer></script>
+        <script src="dev.js" defer></script>
+    </body>
+</html>

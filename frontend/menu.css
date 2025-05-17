@@ -1,0 +1,6 @@
+.menu {
+    display: flex;
+    width: 100%;
+    background-color: grey;
+    padding: 5px;
+}
