@@ -127,8 +127,7 @@ main {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    /*align-items: center;*/
-    padding: 100px 50px;
+    padding: 150px 50px;
     min-height: 100dvh;
     gap: clamp(20px, 5dvh, 100px);
 }

@@ -1,5 +1,8 @@
 from flask import Blueprint, request, jsonify, g
 from flask import current_app as app
+from app.services.fish import add_fish
+from app.services.providers import add_provider
+import traceback
 
 files_bp = Blueprint("files", __name__)
 
@@ -14,6 +17,7 @@ def add_file():
         name = data.get("name")
         provider = data.get("provider")
         date = data.get("date")
+        file = request.files.get("file")
 
         if not name or not provider or not date:
             return jsonify({
@@ -21,8 +25,19 @@ def add_file():
                 "message": "Los campos 'name', 'provider' y 'date' son obligatorios",
                 "data": None
             }), 400
-
+        
+        if file is None:
+            return jsonify({
+                "state": "error",
+                "message": "El archivo es obligatorio",
+                "data": None
+            }), 400
+        
         with connection.cursor() as cursor:
+            provider_result = add_provider(cursor, provider)
+
+            provider_id = provider_result[0]
+
             exists = check_file(cursor, name)
             if exists:
                 return jsonify({
@@ -32,25 +47,28 @@ def add_file():
                 }), 409
 
             cursor.execute(
-                '''INSERT INTO public.files (name, provider, date)
-                   VALUES (%s, %s, %s) RETURNING id, name, provider, date;''',
-                (name, provider, date)
+                '''INSERT INTO public.files (name, date, provider_id)
+                   VALUES (%s, %s, %s) RETURNING id, name, date, provider_id;''',
+                (name, date, provider_id)
             )
-            file = cursor.fetchone()
+            file_record = cursor.fetchone()
+
+            add_fish(cursor, file, file_record[0]) # Añadir el archivo a la tabla fish
+
 
         return jsonify({
             "state": "success",
             "message": "Archivo creado",
             "data": {
-                "id": file[0],
-                "name": file[1],
-                "provider": file[2],
-                "date": file[3]
+                "id": file_record[0],
+                "name": file_record[1],
+                "date": file_record[2],
+                "provider_id": file_record[3]
             }
         }), 201
 
     except Exception as e:
-        app.logger.error(f"❌ Error en la creación del archivo: {e}")
+        app.logger.error("❌ Error en la creación del archivo:\n%s", traceback.format_exc())
         return jsonify({
             "state": "error",
             "message": str(e),
@@ -65,7 +83,7 @@ def get_files():
     try:
         with connection.cursor() as cursor:
             cursor.execute(
-                '''SELECT id, name, provider, date FROM public.files ORDER BY provider;'''
+                '''SELECT id, name, date, provider_id FROM public.files ORDER BY id;'''
             )
             files = cursor.fetchall()
 
@@ -73,8 +91,8 @@ def get_files():
             {
                 "id": f[0],
                 "name": f[1],
-                "provider": f[2],
-                "date": f[3].isoformat()  # Para que se convierta a formato ISO legible en JS
+                "date": f[2].isoformat(),  # Para que se convierta a formato ISO legible en JS
+                "provider_id": f[3]
             }
             for f in files
         ]
